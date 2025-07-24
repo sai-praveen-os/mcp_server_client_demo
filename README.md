@@ -13,6 +13,15 @@ This project was built following the free online course [Introduction to Model C
 
 This implementation demonstrates practical MCP usage patterns and serves as a reference for developers learning the Model Context Protocol.
 
+## AWS Setup Details
+
+This project was developed using:
+- **AWS Account**: Janus Dev environment
+- **AI Model**: Claude 3.5 Haiku via Amazon Bedrock
+- **Authentication**: IAM user with inline permission `bedrock:InvokeModel`
+
+The application connects to AWS Bedrock to access Claude's language model capabilities for the chat interface.
+
 ## Prerequisites
 
 - Python 3.9+
@@ -28,11 +37,27 @@ This implementation demonstrates practical MCP usage patterns and serves as a re
    - Set environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
    - Use IAM roles (if running on EC2)
 
-2. **Request model access** in AWS Bedrock console:
+2. **Configure IAM permissions**:
+   - Create an IAM user or use existing credentials
+   - Attach the following inline policy to allow Bedrock model invocation:
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": "bedrock:InvokeModel",
+         "Resource": "*"
+       }
+     ]
+   }
+   ```
+
+3. **Request model access** in AWS Bedrock console:
    - Go to AWS Bedrock → Model access
    - Request access to Claude 3.5 Haiku model
 
-3. **Configure environment variables**:
+4. **Configure environment variables**:
    - Copy `.env.example` to `.env`: `cp .env.example .env`
    - Update `.env` with your AWS credentials if not using AWS CLI
    - The default configuration uses:
