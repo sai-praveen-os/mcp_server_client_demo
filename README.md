@@ -1,0 +1,135 @@
+# MCP Chat
+
+MCP Chat is a command-line interface application that enables interactive chat capabilities with AI models through AWS Bedrock. The application supports document retrieval, command-based prompts, and extensible tool integrations via the MCP (Model Control Protocol) architecture.
+
+## Prerequisites
+
+- Python 3.9+
+- AWS Account with Bedrock access
+- AWS CLI configured or AWS credentials
+
+## Setup
+
+### Step 1: Configure AWS and environment variables
+
+1. **Set up AWS credentials** (choose one option):
+   - Configure AWS CLI: `aws configure`
+   - Set environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+   - Use IAM roles (if running on EC2)
+
+2. **Request model access** in AWS Bedrock console:
+   - Go to AWS Bedrock → Model access
+   - Request access to Claude 3.5 Haiku model
+
+3. **Configure environment variables**:
+   - Copy `.env.example` to `.env`: `cp .env.example .env`
+   - Update `.env` with your AWS credentials if not using AWS CLI
+   - The default configuration uses:
+
+```
+CLAUDE_MODEL=anthropic.claude-3-5-haiku-20241022-v1:0
+AWS_REGION=us-west-2
+USE_UV=1
+```
+
+**Important:** Never commit your `.env` file to version control. It's already excluded in `.gitignore`.
+
+### Step 2: Install dependencies
+
+#### Option 1: Setup with uv (Recommended)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package installer and resolver.
+
+1. Install uv, if not already installed:
+
+```bash
+pip install uv
+```
+
+2. Create and activate a virtual environment:
+
+```bash
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
+
+3. Install dependencies:
+
+```bash
+uv pip install -e .
+```
+
+4. Run the project
+
+```bash
+uv run main.py
+```
+
+#### Option 2: Setup without uv
+
+1. Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
+
+2. Install dependencies:
+
+```bash
+pip install boto3 python-dotenv prompt-toolkit "mcp[cli]==1.8.0"
+```
+
+3. Run the project
+
+```bash
+python main.py
+```
+
+## Usage
+
+### Basic Interaction
+
+Simply type your message and press Enter to chat with the model.
+
+### Document Retrieval
+
+Use the @ symbol followed by a document ID to include document content in your query:
+
+```
+> Tell me about @deposition.md
+```
+
+### Commands
+
+Use the / prefix to execute commands defined in the MCP server:
+
+```
+> /summarize deposition.md
+```
+
+Commands will auto-complete when you press Tab.
+
+## Security Notes
+
+- **Never commit your `.env` file** - it contains sensitive credentials
+- Configure AWS credentials via AWS CLI or IAM roles when possible
+- Keep your AWS access keys secure and rotate them regularly
+- The `.env.example` file shows the required environment variables
+
+## Development
+
+### Adding New Documents
+
+Edit the `mcp_server.py` file to add new documents to the `docs` dictionary.
+
+### Implementing MCP Features
+
+To fully implement the MCP features:
+
+1. Complete the TODOs in `mcp_server.py`
+2. Implement the missing functionality in `mcp_client.py`
+
+### Linting and Typing Check
+
+There are no lint or type checks implemented.
