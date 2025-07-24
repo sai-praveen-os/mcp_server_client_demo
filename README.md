@@ -2,6 +2,17 @@
 
 MCP Chat is a command-line interface application that enables interactive chat capabilities with AI models through AWS Bedrock. The application supports document retrieval, command-based prompts, and extensible tool integrations via the MCP (Model Control Protocol) architecture.
 
+## About This Project
+
+This project was built following the free online course [Introduction to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol) by Anthropic. The course provides hands-on experience with MCP concepts including:
+
+- Building MCP servers and clients
+- Implementing tools, resources, and prompts
+- Integrating with AI models through AWS Bedrock
+- Creating interactive CLI applications
+
+This implementation demonstrates practical MCP usage patterns and serves as a reference for developers learning the Model Context Protocol.
+
 ## Prerequisites
 
 - Python 3.9+
@@ -133,3 +144,17 @@ To fully implement the MCP features:
 ### Linting and Typing Check
 
 There are no lint or type checks implemented.
+
+## Learning Resources
+
+- [Introduction to Model Context Protocol Course](https://anthropic.skilljar.com/introduction-to-model-context-protocol) - Free course by Anthropic
+- [MCP Documentation](https://modelcontextprotocol.io/) - Official MCP specification and guides
+- [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/) - AWS Bedrock service documentation
+
+## Contributing
+
+This project serves as a learning example from the Anthropic MCP course. Feel free to:
+- Extend functionality with additional MCP features
+- Add new tools and resources
+- Improve the CLI interface
+- Add tests and documentation
