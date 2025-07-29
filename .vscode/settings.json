@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "document-mcp": {
+      "command": "python",
+      "args": ["/home/saipraveenos/code/others/skilljar/mcp_server_client_demo/mcp_server.py"],
+      "disabled": false,
+      "autoApprove": ["read_doc_contents"],
+      "cwd": "/home/saipraveenos/code/others/skilljar/mcp_server_client_demo",
+      "env": {
+        "PYTHONPATH": "/home/saipraveenos/code/others/skilljar/mcp_server_client_demo"
+      }
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "/home/saipraveenos/code/others/skilljar/mcp_server_client_demo"],
+      "disabled": false,
+      "autoApprove": ["git_status", "git_log", "git_diff"]
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

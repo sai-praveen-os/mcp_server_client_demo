@@ -1,0 +1,12 @@
+.env
+__pycache__/
+.venv/
+.DS_Store
+*.egg-info/
+uv.lock
+.git/
+
+*.log
+*.tmp
+.pytest_cache/
+.coverage
